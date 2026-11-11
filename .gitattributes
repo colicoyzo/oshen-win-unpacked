@@ -1,0 +1,16 @@
+# 默认按文本处理，统一 LF
+* text=auto
+
+# Windows 批处理必须 CRLF
+*.bat text eol=crlf
+*.cmd text eol=crlf
+
+# 二进制
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.docx binary
+*.pdf binary
+*.exe binary
+*.dll binary

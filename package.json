@@ -1,0 +1,55 @@
+{
+  "name": "oshen-file-renamer",
+  "version": "1.0.0",
+  "description": "o神套装-文件名修改器 - Windows 文件名批量修改工具",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "dist": "electron-builder --win",
+    "test": "node test/disk-test.js && node test/fix-test.js && node test/dom-test.js"
+  },
+  "author": "colicoyzo",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/colicoyzo/oshen-win-unpacked.git"
+  },
+  "homepage": "https://github.com/colicoyzo/oshen-win-unpacked#readme",
+  "bugs": {
+    "url": "https://github.com/colicoyzo/oshen-win-unpacked/issues"
+  },
+  "dependencies": {
+    "iconv-lite": "^0.6.3",
+    "opencc-js": "^1.0.5",
+    "pinyin-pro": "^3.26.0"
+  },
+  "devDependencies": {
+    "electron": "^33.2.0",
+    "electron-builder": "^25.1.8",
+    "jsdom": "^31.0.0"
+  },
+  "build": {
+    "appId": "com.colicoyzo.oshen.filerenamer",
+    "productName": "o神套装-文件名修改器",
+    "files": [
+      "**/*",
+      "!test/**",
+      "!samples/**",
+      "!docs/**",
+      "!dist/**",
+      "!.workbuddy/**",
+      "!*.md"
+    ],
+    "win": {
+      "target": [
+        "nsis",
+        "portable"
+      ]
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true
+    }
+  }
+}

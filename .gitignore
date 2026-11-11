@@ -1,0 +1,19 @@
+# 依赖
+node_modules/
+
+# 打包产物（体积大，请本地 `npm run dist` 生成）
+dist/
+out/
+
+# 工作区元数据
+.workbuddy/
+
+# 测试产物
+test/smoke-result.json
+
+# 日志与系统文件
+*.log
+npm-debug.log*
+.DS_Store
+Thumbs.db
+desktop.ini
