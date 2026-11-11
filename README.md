@@ -4,6 +4,16 @@ Windows 桌面端批量文件名修改工具，基于 **Electron + Node.js**，�
 
 ![主界面](docs/preview-rename.png)
 
+## 下载
+
+免安装包见 **[Releases](https://github.com/colicoyzo/oshen-win-unpacked/releases)**：
+
+| 文件 | 说明 |
+| --- | --- |
+| `oshen-renamer-1.0.0-win-x64.zip` | 解压后双击 `o神套装-文件名修改器.exe` 运行，无需安装 |
+
+支持 Windows 10 / 11 x64。未做代码签名，SmartScreen 可能提示「未知发布者」，点「更多信息 → 仍要运行」即可。
+
 ## 功能
 
 | 模块 | 说明 |
@@ -48,7 +58,15 @@ npx electron-builder --win dir    # 仅生成免安装目录 dist/win-unpacked/
 
 > 若报 `Cannot create symbolic link`：开启 Windows「开发人员模式」，或用管理员终端执行。
 
-免安装版 `dist/win-unpacked/` 约 190MB，超出 GitHub 单文件 100MB 限制，故不纳入仓库；请本地打包生成，或改用 Release 附件分发。
+免安装版 `dist/win-unpacked/` 约 276MB（压缩后约 110MB），超出 GitHub 单文件 100MB 限制，故不纳入仓库。分发方式为 Release 附件：
+
+```bash
+npx electron-builder --win dir
+node_modules/7zip-bin/win/x64/7za.exe a -tzip -mx=5 dist/oshen-renamer-1.0.0-win-x64.zip ./dist/win-unpacked/*
+GH_TOKEN=xxx bash publish-release.sh    # 建 Release + 上传附件，可重复执行
+```
+
+`publish-release.sh` 会读取 `docs/release-notes-v<version>.md` 作为 Release 正文；同名 Release 已存在时复用并补充附件，不会重复创建。Token 需具备 `repo`（classic）或 `Contents: Read and write`（fine-grained）权限。
 
 ## 安全设计
 
@@ -69,7 +87,8 @@ src/styles.css      界面样式
 src/renderer.js     渲染层交互逻辑
 test/               无头测试（引擎 / DOM / 真实磁盘 / 缺陷回归）
 samples/            示例文件，可直接拖入试用
-docs/               界面截图
+docs/               界面截图、Release 文案
+publish-release.sh  发版脚本：建 Release + 上传附件
 ```
 
 ## 测试
